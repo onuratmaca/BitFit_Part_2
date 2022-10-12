@@ -1,16 +1,13 @@
 package com.codepath.BitFit
 
 import android.content.Context
-import android.content.Intent
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.articlesearch.R
-
-const val FOOD_EXTRA = "FOOD_EXTRA"
 
 class FoodAdapter(private val context: Context, private val foods: List<DisplayFood>) :
     RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
@@ -50,21 +47,8 @@ class FoodAdapter(private val context: Context, private val foods: List<DisplayF
         }
 
 
-
         override fun onClick(v: View?) {
-            // TODO: Get selected article
-            /*
-            val food = foods[absoluteAdapterPosition]
 
-            val f = Food1(food.name,food.calories)
-
-            // TODO: Navigate to Details screen and pass selected article
-            val intent = Intent(context, DetailActivity::class.java)
-                .putExtra(FOOD_EXTRA, f)
-
-            context.startActivity(intent)
-
-             */
         }
     }
 }

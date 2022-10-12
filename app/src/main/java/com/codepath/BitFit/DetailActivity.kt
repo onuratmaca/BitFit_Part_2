@@ -1,11 +1,13 @@
 package com.codepath.BitFit
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
 import com.codepath.articlesearch.R
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -24,14 +26,6 @@ class DetailActivity : AppCompatActivity() {
         foodTextView = findViewById(R.id.food_ET)
         caloriesTextView = findViewById(R.id.calories_ET)
 
-        // TODO: Get the extra from the Intent
-        //val food = intent.getParcelableExtra<Food1>(FOOD_EXTRA) as Food1
-
-        // TODO: Set the title, byline, and abstract information from the article
-
-        //foodTextView.text = food.name
-        //caloriesTextView.text = food.calories.toString()
-
         findViewById<Button>(R.id.submit_BT).setOnClickListener {
             lifecycleScope.launch(IO) {
                 //(application as FoodApplication).db.foodDAO().deleteAll()
@@ -42,7 +36,15 @@ class DetailActivity : AppCompatActivity() {
                     )
                 )
             }
+            foodTextView.hideKeyboard()
+            foodTextView.text = ""
+            caloriesTextView.text = ""
         }
 
+    }
+
+    fun View.hideKeyboard() {
+        val hide = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        hide.hideSoftInputFromWindow(windowToken, 0)
     }
 }
