@@ -20,11 +20,12 @@ class FoodListFragment : Fragment() {
     private val foods = mutableListOf<DisplayFood>()
     private lateinit var application: FoodApplication
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
+
+
 
 
     override fun onCreateView(
@@ -36,7 +37,7 @@ class FoodListFragment : Fragment() {
         foodsRecyclerView = view.findViewById(R.id.fragment_recycler_view)
 
         // TODO: Set up FoodAdapter with food list
-        val foodAdapter = FoodAdapter(view!!.context, foods)
+        val foodAdapter = FoodAdapter(view.context, foods)
         foodsRecyclerView.adapter = foodAdapter
 
 

@@ -93,10 +93,10 @@ class MainActivity : AppCompatActivity() {
          */
     }
 
-    private fun replaceFragment(foodListFragment: FoodListFragment) {
+    private fun replaceFragment(thisFragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_recycler_view, foodListFragment)
+        fragmentTransaction.replace(R.id.frame_layout_try, thisFragment)
         fragmentTransaction.commit()
     }
 }
