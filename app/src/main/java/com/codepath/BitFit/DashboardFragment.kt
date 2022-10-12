@@ -5,39 +5,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.articlesearch.R
-import com.codepath.articlesearch.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
 
-class FoodListFragment : Fragment() {
+class DashboardFragment : Fragment() {
     private lateinit var foodsRecyclerView: RecyclerView
-    private lateinit var binding: ActivityMainBinding
     private val foods = mutableListOf<DisplayFood>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
-
-
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_food_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
-        foodsRecyclerView = view.findViewById(R.id.fragment_recycler_view)
+        val averageCalories = view.findViewById<TextView>(R.id.average_caloriesTV)
+        val minCalories = view.findViewById<TextView>(R.id.minimum_calorieTV)
+        val maxCalories = view.findViewById<TextView>(R.id.maximum_calorieTV)
 
-        // TODO: Set up FoodAdapter with food list
         val foodAdapter = FoodAdapter(view.context, foods)
-        foodsRecyclerView.adapter = foodAdapter
+
+        var minCal = 0
+        var maxCal = 0
+        var avgCal = 0
 
 
 
@@ -50,24 +50,19 @@ class FoodListFragment : Fragment() {
                 }.also { mappedList ->
                     foods.clear()
                     foods.addAll(mappedList)
+                    maxCalories.text = foods.size.toString()
                     foodAdapter.notifyDataSetChanged()
                 }
             }
         }
 
 
-
-        foodsRecyclerView.layoutManager = LinearLayoutManager(view.context).also {
-            val dividerItemDecoration = DividerItemDecoration(view.context, it.orientation)
-            foodsRecyclerView.addItemDecoration(dividerItemDecoration)
-        }
-
         return view
     }
 
     companion object {
-        fun newInstance(): FoodListFragment {
-            return FoodListFragment()
+        fun newInstance(): DashboardFragment {
+            return DashboardFragment()
         }
     }
 }

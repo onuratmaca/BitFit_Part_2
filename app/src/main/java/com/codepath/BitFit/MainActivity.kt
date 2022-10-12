@@ -35,17 +35,22 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager: FragmentManager = supportFragmentManager
 
         val foodListFragment: Fragment = FoodListFragment()
+        val dashboardFragment: Fragment = DashboardFragment()
 
         val bottomNavigationBarView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
+
         bottomNavigationBarView.setOnItemSelectedListener { item ->
-            lateinit var fragment: Fragment
+            lateinit var thisFragment: Fragment
             when (item.itemId){
-                R.id.log -> fragment = foodListFragment
+                R.id.log -> thisFragment = foodListFragment
+                R.id.dashboard -> thisFragment = dashboardFragment
             }
-            replaceFragment(fragment as FoodListFragment)
+            replaceFragment(thisFragment)
             true
         }
+
+
 
         bottomNavigationBarView.selectedItemId = R.id.log
         /*
