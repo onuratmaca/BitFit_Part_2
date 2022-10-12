@@ -56,9 +56,9 @@ class DashboardFragment : Fragment() {
                         foods.clear()
                         foods.addAll(mappedList)
                         if (foods.size > 0) {
+                            minCal = foods.get(0).calories!!.toInt()
                             for (i in foods) {
-                                minCal = i.calories!!.toInt()
-                                if (i.calories > maxCal) {
+                                if (i.calories!! > maxCal) {
                                     maxCal = i.calories.toInt()
                                 } else if (i.calories < minCal) {
                                     minCal = i.calories.toInt()
